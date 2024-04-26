@@ -1,0 +1,297 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/free-vector/futuristic-background-design_23-2148503793.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        form {
+            max-width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        button {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .patterns {
+  height: 50vh;
+}
+
+svg text {
+  font-family: Lora;
+  letter-spacing: 10px;
+  stroke: #ffa5d8;
+  font-size: 400%;
+  font-weight: 700;
+  stroke-width: 2;
+ 
+  animation: textAnimate 5s infinite alternate;
+  
+}
+
+@keyframes textAnimate {
+  0% {
+    stroke-dasharray: 0 50%;
+    stroke-dashoffset:  20%;
+    fill:hsl(189, 68%, 75%)
+
+  }
+  
+  100% {
+    stroke-dasharray: 50% 0;
+    stroke-dashoffstet: -20%;
+    fill: hsla(189, 68%, 75%,0%)
+  }
+  
+}
+
+.loader {
+  border: 0.5em solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 0.5em solid #3498db;
+  width: 2em;
+  height: 2em;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.layout-grid2 {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.grid-container2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 20px;
+    grid-gap: 20px;
+}
+
+.grid-item2 {
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item2 h4{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    cursor: pointer;
+    color: #fff;
+}
+
+.grid-item2 input[type="radio"] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+.grid-item2 input[type="radio"]:checked + label {
+    border: 2px solid #007bff;
+}
+
+.grid-item2 label {
+  display: block;
+  position: relative;
+  border: 2px solid transparent; /* Default border for labels */
+}
+.layout-grid3 {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.grid-container3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+    grid-gap: 20px;
+}
+
+.grid-item3 {
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-item3 h4{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: cover;
+    cursor: pointer;
+    color: #fff;
+}
+
+.grid-item3 input[type="radio"] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+.grid-item3 input[type="radio"]:checked + label {
+    border: 2px solid #007bff;
+}
+
+.grid-item3 label {
+  display: block;
+  position: relative;
+  border: 2px solid transparent; /* Default border for labels */
+}
+    </style>
+</head>
+<body>
+    <div class="patterns">
+        <svg width="100%" height="100%">
+          <defs>
+            <pattern id="polka-dots" x="0" y="0" width="100" height="100"
+                     patternUnits="userSpaceOnUse">
+              <circle fill="#be9ddf" cx="25" cy="25" r="3"></circle>
+            </pattern>  
+              <style>
+           @import url("https://fonts.googleapis.com/css?  family=Lora:400,400i,700,700i");
+         </style>
+            
+          </defs>
+                    
+          <rect x="0" y="0" width="100%" height="100%" fill="url(#polka-dots)"> </rect>
+           
+          
+         
+       <text x="50%" y="60%"  text-anchor="middle"  >
+         Automated Infographics
+       </text>
+       </svg>
+      </div>
+    <div class="layout-grid">
+        <div class="grid-container">
+            <div class="grid-item">
+                <form method="post" action="{% url 'upload_file' %}" enctype="multipart/form-data" onsubmit="showLoadingBar()">
+                    {% csrf_token %}
+                    <input id="file-upload" type="file" name="file" accept=".pdf">
+                    <div class="layout-grid2">
+                      <label style="color: #fff;">Choose Summarization Method:</label>
+                      <div class="grid-container2">
+                        <div class="grid-item2">
+                            <input type="radio" id="layout1" name="layout_choice" value="layout1" checked>
+                            <label for="layout1">
+                                <h4>Graph Based</h4>
+                            </label>
+                        </div>
+                        <div class="grid-item2">
+                            <input type="radio" id="layout2" name="layout_choice" value="layout2">
+                            <label for="layout2">
+                              <h4>GPT-3</h4>
+                            </label>
+                        </div>
+                        <div class="grid-item2">
+                            <input type="radio" id="layout3" name="layout_choice" value="layout3">
+                            <label for="layout3">
+                              <h4>T5</h4>
+                            </label>
+                        </div>
+                        <div class="grid-item2">
+                            <input type="radio" id="layout4" name="layout_choice" value="layout4">
+                            <label for="layout4">
+                              <h4>BART</h4>
+                            </label>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="layout-grid3" style="margin-top: 10px;">
+                    <label style="color: #fff;">Choose a Layout:</label>
+                    <div class="grid-container3">
+                      <div class="grid-item3">
+                          <input type="radio" id="layout11" name="layout_choice2" value="layout11" checked>
+                          <label for="layout11">
+                            <div>
+                              <h4>Layout 1</h4>
+                              
+                            </div>
+                          </label>
+                      </div>
+                      <div class="grid-item3">
+                          <input type="radio" id="layout12" name="layout_choice2" value="layout12">
+                          <label for="layout12">
+                            <h4>Layout 2</h4>
+                          </label>
+                      </div>
+                  </div>
+                </div>
+                    <button type="submit">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="loading-bar" style="display: none">
+        <!-- Your loading bar content -->
+        <div style=" position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); display: flex; justify-content: center; align-items: center;">
+            <div style="display: flex; align-items: center;">
+                <div class="loader" style="margin-right: 10px;"></div>
+                <h3>Please wait while we are processing your document</h3>
+              </div>
+        </div>
+      </div>
+      <script>
+        // Function to show the loading bar
+        function showLoadingBar() {
+            document.getElementById('loading-bar').style.display = 'block';
+        }
+    
+        // Function to hide the loading bar
+        function hideLoadingBar() {
+            document.getElementById('loading-bar').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
