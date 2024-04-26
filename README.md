@@ -29,7 +29,7 @@ python manage.py runserver
 2. Extracting the text
 3. Segmenting text into 3 sections - Abstract, Results and Conclusion
 4. Summarizing the text
-5. Searching for images
+5. Searching for images and captions
 6. Extracting relavant images
 7. Extracting keu phrases
 8. Extracting Title based on Heuristic Methods
