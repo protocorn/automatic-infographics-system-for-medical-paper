@@ -6,7 +6,7 @@
 Navigate to the `models1` folder in the `infogrphicsproject` directory.
 
 ### Step 2:
-Delete the file named 'deletethis' and download the models from [Google Drive](link).
+Delete the file named 'deletethis' and download the models from [Google Drive - models-for-infographics](https://drive.google.com/drive/folders/1TrkExTRmuBWB5rn5erlgtiBg_skfCQfa?usp=sharing).
 
 ### Step 3:
 You're all set to go!
