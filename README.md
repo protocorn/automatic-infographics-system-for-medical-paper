@@ -3,7 +3,7 @@
 ## How to Run the Project
 
 ### Step 1:
-Navigate to the `models1` folder in the `infographics` directory.
+Navigate to the `models1` folder in the `infogrphicsproject` directory.
 
 ### Step 2:
 Delete the file named 'deletethis' and download the models from [Google Drive](link).
